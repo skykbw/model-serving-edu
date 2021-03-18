@@ -394,14 +394,15 @@ def covid_classifier_model2(img_path, filename):
 
     #MODEL2_API_URL is tensorflow serving URL in another docker
     HEADERS = {'content-type': 'application/json', 
-                'Host': 'covid19.myspace.example.com'}
-    MODEL2_API_URL = 'http://34.82.197.10:8511/v1/models/covid19/versions/1:predict'
-    #MODEL2_API_URL = 'http://34.82.197.10:32380/v1/models/covid-19:predict'
+                'Host': 'covid-19.myspace.example.com'}
+    #MODEL2_API_URL = 'http://34.82.197.10:8511/v1/models/covid19/versions/1:predict'
+    MODEL2_API_URL = 'http://34.82.197.10:32380/v1/models/covid-19:predict'
     CLASS_NAMES = ['Covid19', 'Normal_Lung', 'Pneumonia_Bacterial_Lung']
 
-    logging.warning("****** Tenserflow Serving Request  *****")
+    logging.warning("****** kfserving Request  *****")
+    logging.warning("MODEL2_API_URL " + MODEL2_API_URL)
     json_response = requests.post(MODEL2_API_URL, data=data, headers=HEADERS)
-    logging.warning("****** Tenserflow Serving Response  *****")
+    logging.warning("****** kfserving Request  *****")
     logging.warning(json_response)
     logging.warning(json_response.text)
 
